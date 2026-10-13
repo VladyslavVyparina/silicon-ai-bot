@@ -13,7 +13,7 @@ from pathlib import Path
 # Фіксований тестовий пароль адмінки стенду (для програміста 1С)
 TEST_ADMIN_LOGIN = "1c_dev"
 TEST_ADMIN_EMAIL = "1c-dev@silicon.local"
-TEST_ADMIN_PASSWORD = "Silicon1C-Test2026"
+TEST_ADMIN_PASSWORD = "CHANGE_ME"
 
 
 def _hash_password(password: str) -> str:

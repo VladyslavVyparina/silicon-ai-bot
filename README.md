@@ -48,6 +48,13 @@ pytest -v
 
 Set `MOCK_EXTERNAL_APIS=false` only when the 1C, payment, and delivery keys are yours.
 
-## What this public copy leaves out
+## What this copy leaves out
 
-`.env`, customer databases, generated invoices, call recordings, and the 1C access note. Those stay in the private working copy.
+`.env`, customer databases, generated invoices, call recordings, and the 1C access note. Those stay in the working copy on the author machine.
+
+## Documents
+
+- `handover_1c/README_1C.md` is how to start the Docker stand on port 8001.
+- `handover_1c/API_1C_CONTRACT.md` is the HTTP contract: search a counterparty by EDRPOU, create one, create an invoice. The customer PDF, including stamp and signature, is whatever 1C prints.
+- `handover_1c/LETTER_TO_SEND.txt` is the cover note for the 1C specialist. Logins are not in the letter.
+- `data/branding/README.md` says where a local stamp and signature would go. The preferred file is still the 1C print.

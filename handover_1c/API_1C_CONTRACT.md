@@ -1,47 +1,61 @@
-# Контракт API 1С для Silicon Bot
+# 1C HTTP contract for the Silicon bot
 
-Base URL задається в `ONEC_API_URL` (без слеша в кінці).
-Auth: HTTP Basic (`ONEC_API_USER` / `ONEC_API_PASSWORD`).
+The base URL is `ONEC_API_URL`, with no trailing slash. Authentication is HTTP Basic (`ONEC_API_USER` / `ONEC_API_PASSWORD`).
 
-## 1. Пошук контрагента
-`GET {BASE}/counterparties/search?edrpou=12345678`  
-або `?name=ТОВ%20Сілікон`
+## 1. Find a counterparty
 
-Відповідь: JSON-масив (може бути порожній):
+`GET {BASE}/counterparties/search?edrpou=12345678`
+
+or `?name=` plus the URL-encoded company name.
+
+Response: a JSON array, which may be empty.
+
 ```json
-[{"id": "1c-001", "name": "ТОВ Сілікон", "edrpou": "12345678", "ipn": "…", "address": "…"}]
+[{"id": "1c-001", "name": "Example LLC", "edrpou": "12345678", "ipn": "", "address": ""}]
 ```
 
-## 2. Створення контрагента
+## 2. Create a counterparty
+
 `POST {BASE}/counterparties`
+
 ```json
 {
   "edrpou": "55667788",
-  "name": "ТОВ Новий Клієнт",
+  "name": "New Client LLC",
   "ipn": "9988776655",
-  "address": "м. Львів, …",
-  "phone": "+38050…",
+  "address": "full legal address",
+  "phone": "+380501112233",
   "email": "a@b.c"
 }
 ```
-Відповідь:
+
+Response:
+
 ```json
-{"id": "1c-xxx", "name": "…", "edrpou": "…"}
+{"id": "1c-xxx", "name": "New Client LLC", "edrpou": "55667788"}
 ```
 
-## 3. Створення рахунку
+If the code already exists, return the existing id (HTTP 409 with that id is what the bot already understands).
+
+## 3. Create an invoice
+
 `POST {BASE}/invoices`
+
 ```json
 {
   "counterparty_id": "1c-001",
   "amount": 1150,
-  "description": "Замовлення Silicon",
+  "description": "Silicon order",
   "items": []
 }
 ```
-Відповідь:
+
+Response:
+
 ```json
-{"id": "…", "number": "INV-…", "amount": 1150}
+{"id": "document-guid", "number": "0000-000001", "amount": 1150}
 ```
 
-Якщо публікуєте лише OData — надайте mapping сутностей або окремий HTTP-шар під ці 3 методи.
+The PDF the customer receives is `GET {BASE}/invoice/{id}/pdf` on the live service the bot calls. Stamp, signature, supplier bank details, and the buyer address are filled by the 1C print form, not by this file.
+
+If you can publish only OData, send an entity map or a thin HTTP layer that implements these three methods.

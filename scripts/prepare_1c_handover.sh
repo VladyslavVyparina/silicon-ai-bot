@@ -51,7 +51,7 @@ DATABASE_URL=sqlite+aiosqlite:////app/data/silicon_bot.db
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-5
 TELEGRAM_BOT_TOKEN=
-ADMIN_PASSWORD=Silicon1C-Test2026
+ADMIN_PASSWORD=CHANGE_ME
 ADMIN_OWNER_EMAIL=1c-dev@silicon.local
 ADMIN_SECRET_KEY=silicon-1c-test-secret-change-on-prod
 ADMIN_PUBLIC_URL=http://127.0.0.1:8001
@@ -77,7 +77,7 @@ DATABASE_URL=sqlite+aiosqlite:///${OUT}/silicon_bot_1c_test.db
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-5
 TELEGRAM_BOT_TOKEN=
-ADMIN_PASSWORD=Silicon1C-Test2026
+ADMIN_PASSWORD=CHANGE_ME
 ADMIN_OWNER_EMAIL=1c-dev@silicon.local
 ADMIN_SECRET_KEY=silicon-1c-test-secret-change-on-prod
 ADMIN_PUBLIC_URL=http://127.0.0.1:8001
@@ -196,7 +196,7 @@ Health:               ${STAND_URL}/health
 Адмін:
   login:    1c_dev
   email:    1c-dev@silicon.local
-  password: Silicon1C-Test2026
+  password: CHANGE_ME
 
 БД: silicon_bot_1c_test.db (SQLite, анонімізована)
 Тестові ЄДРПОУ в mock 1С: 12345678, 87654321
@@ -225,7 +225,7 @@ API: ${STAND_URL}
 Документація: ${STAND_URL}/docs
 Адмінка: ${STAND_URL}/admin
 Логін: 1c_dev
-Пароль: Silicon1C-Test2026
+Пароль: CHANGE_ME
 
 Запуск у себе (якщо стенд ще не на сервері):
 docker compose -f docker-compose.1c-test.yml up -d --build

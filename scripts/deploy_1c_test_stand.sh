@@ -30,7 +30,7 @@ DATABASE_URL=sqlite+aiosqlite:////${root}/handover_1c/silicon_bot_1c_test.db
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-5
 TELEGRAM_BOT_TOKEN=
-ADMIN_PASSWORD=Silicon1C-Test2026
+ADMIN_PASSWORD=CHANGE_ME
 ADMIN_OWNER_EMAIL=1c-dev@silicon.local
 ADMIN_SECRET_KEY=silicon-1c-test-secret
 ADMIN_PUBLIC_URL=${PUBLIC_URL}
@@ -54,7 +54,7 @@ Health:               ${PUBLIC_URL}/health
 Адмін:
   login:    1c_dev
   email:    1c-dev@silicon.local
-  password: Silicon1C-Test2026
+  password: CHANGE_ME
 
 БД: silicon_bot_1c_test.db (SQLite, анонімізована)
 Тестові ЄДРПОУ в mock 1С: 12345678, 87654321
@@ -74,7 +74,7 @@ EOF
    Swagger: ${PUBLIC_URL}/docs
    Адмінка: ${PUBLIC_URL}/admin
    Логін: 1c_dev
-   Пароль: Silicon1C-Test2026
+   Пароль: CHANGE_ME
 
 Контракт API 1С (що має віддавати 1С):
 GET  /counterparties/search
@@ -114,7 +114,7 @@ EOF
 
   echo
   echo "Тестовий стенд: ${PUBLIC_URL}/test-bot"
-  echo "Адмінка:        ${PUBLIC_URL}/admin  (1c_dev / Silicon1C-Test2026)"
+  echo "Адмінка:        ${PUBLIC_URL}/admin  (1c_dev / CHANGE_ME)"
   echo "Лист:           ${root}/handover_1c/LETTER_TO_SEND.txt"
   echo "Архів:          ${root}/handover_1c/Silicon_1C_handover.zip"
 }

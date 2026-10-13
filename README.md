@@ -1,31 +1,41 @@
-# Silicon — продажі в Telegram
+# Silicon sales bot
 
-Бот магазину silicon.com.ua веде консультацію за каталогом, рахує ціну, збирає доставку Новою поштою, виставляє рахунок і приймає оплату. Рахунки створюються в 1С, оплата йде через LiqPay, угоди — в CRM.
+Telegram sales bot for silicon.com.ua. It consults on promotional products, prices the order, collects delivery, issues an invoice, and takes payment.
 
-**Стек.** Python, FastAPI, Telegram, 1С, LiqPay, Нова пошта.
+## Problem
 
-У публічній копії немає паролів, бази клієнтів і файлів рахунків.
+Customers asked for lanyards, badges, bracelets, and similar goods in chat, often mixing size, print, and quantity in one message. Managers were quoting from a price list, then retyping company details into an invoice and a delivery note. The bot had to do that conversation without inventing prices or losing the payer’s legal address.
 
-Публічний кейс. Робоча копія з паролями і базами лишається локально і сюди не входить.
+## What was built
 
----
+- A catalog consultant that answers from product rules and a price file before it ever calls a general model.
+- A quote calculator for sized and unsized goods, including multi-line orders and corrections (“20 mm, not 15”).
+- Checkout that asks for delivery (Nova Poshta), then payment: LiqPay card link, bank invoice, or cash in the office.
+- Invoice collection: company name, EDRPOU, VAT number only when the payer has one, and the full legal address. A repeat order asks whether to reuse the saved payer.
+- Invoice PDF for the customer and a document in 1C (counterparty by EDRPOU, then invoice). The journal number comes back from 1C.
+- CRM deal creation, a “completed order” hook that can create a shipment note, and SendPulse notices for payment and tracking.
 
-# Silicon AI Bot Integrator
+## How it works
 
-Сервер-інтегратор для AI-бота компанії Silicon (silicon.com.ua).
+`POST /api/chat/message` is the main entry. The conversation state machine handles quoting, contacts, delivery, and payment. Pricing is data, not a prompt. When the customer asks for an invoice, the bot confirms the requisites in chat and only then builds the file. If 1C accepts the document, the bot sends the PDF 1C returns and keeps that number. Card payment uses a short `/pay/{id}` link so the chat does not expose the server address.
 
-## Можливості
+Main routes:
 
-- **AI-консультант** — відповіді по товарах на основі каталогу та інструкцій
-- **Калькулятор цін** — розрахунок вартості та термінів виготовлення
-- **CRM Onebox** — автоматичне заведення клієнтів та угод
-- **1С** — перевірка контрагентів за ЄДРПОУ/назвою (без дублікатів), рахунки
-- **LiqPay** — створення платежів та обробка webhook
-- **Нова пошта** — збір даних доставки, створення ТТН
-- **SendPulse** — проактивні сповіщення (ТТН, оплата)
-- **Webhook CRM** — при статусі «Виконано» надсилає ТТН з подякою
+| Method | Path | Role |
+| --- | --- | --- |
+| POST | `/api/chat/message` | Chat turn |
+| POST | `/api/pricing/calculate` | Quote |
+| POST | `/api/orders/invoice` | Invoice from requisites |
+| POST | `/api/orders/{id}/payment` | LiqPay link |
+| POST | `/api/orders/{id}/ttn` | Shipment note |
+| POST | `/api/webhooks/liqpay` | Payment webhook |
+| POST | `/api/webhooks/onebox/order-completed` | CRM completed status |
 
-## Швидкий старт
+## Stack
+
+Python, FastAPI, Telegram, SQLite, 1C HTTP service, LiqPay, Nova Poshta, Onebox CRM, SendPulse.
+
+## Run locally
 
 ```bash
 python -m venv venv
@@ -33,45 +43,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 uvicorn app.main:app --reload --port 8000
-```
-
-## API Endpoints
-
-| Метод | URL | Опис |
-|-------|-----|------|
-| POST | `/api/chat/message` | Головний endpoint для SendPulse |
-| POST | `/api/ai/consult` | AI-консультація |
-| POST | `/api/pricing/calculate` | Розрахунок вартості |
-| POST | `/api/orders/register-client` | Заведення клієнта в CRM |
-| POST | `/api/orders/create` | Створення замовлення |
-| POST | `/api/orders/delivery` | Дані доставки Нова пошта |
-| POST | `/api/orders/{id}/ttn` | Створення ТТН |
-| POST | `/api/orders/{id}/payment` | Посилання LiqPay |
-| POST | `/api/orders/invoice` | Рахунок на реквізити |
-| POST | `/api/webhooks/liqpay` | Webhook оплати |
-| POST | `/api/webhooks/onebox/order-completed` | Статус «Виконано» |
-
-## Тести
-
-```bash
 pytest -v
 ```
 
-## Production
+Set `MOCK_EXTERNAL_APIS=false` only when the 1C, payment, and delivery keys are yours.
 
-Встановіть `MOCK_EXTERNAL_APIS=false` та заповніть ключі API в `.env`.
+## What this public copy leaves out
 
-### Посилання на оплату без IP
-
-У Telegram клієнт бачить короткий URL `/pay/{id}`. Щоб **не світити IP сервера**:
-
-1. Привʼяжіть домен (напр. `bot.silicon.com.ua`) до VPS (DNS A-запис).
-2. Пробросьте HTTPS (nginx/caddy) на порт додатку.
-3. У `.env` задайте:
-
-```bash
-PUBLIC_BASE_URL=https://bot.silicon.com.ua
-ADMIN_PUBLIC_URL=https://bot.silicon.com.ua
-```
-
-Якщо `PUBLIC_BASE_URL` порожній — використовується `ADMIN_PUBLIC_URL` (на проді з IP це погано).
+`.env`, customer databases, generated invoices, call recordings, and the 1C access note. Those stay in the private working copy.

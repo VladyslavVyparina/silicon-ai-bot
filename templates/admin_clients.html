@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>База клієнтів — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+  <style>
+    .people-photo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--bg-secondary); }
+    .people-toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+    .people-toolbar input[type="search"] { min-width: 240px; flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком{% if stats and stats.invoice_notices %} ({{ stats.invoice_notices }}){% endif %}</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки{% if stats and stats.unread_tickets %} ({{ stats.unread_tickets }}){% endif %}</a>
+        <a class="cb-nav-item active" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin and admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">База клієнтів бота</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap" style="max-width:1100px">
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="contact"></i> Люди в базі · {{ people|length }}</div>
+              <a class="btn btn-small btn-green" href="/admin/clients/export.xlsx?token={{ token }}{% if query %}&amp;q={{ query|urlencode }}{% endif %}">Вивантажити Excel</a>
+            </div>
+            <form class="people-toolbar" method="get" action="/admin/clients">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <input type="search" name="q" value="{{ query or '' }}" placeholder="Пошук: ім'я, нік, телефон, chat id…" />
+              <button type="submit" class="btn btn-small">Шукати</button>
+              {% if query %}<a class="btn btn-small btn-ghost" href="/admin/clients?token={{ token }}">Скинути</a>{% endif %}
+            </form>
+            {% if people %}
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Telegram</th>
+                    <th>Телефон</th>
+                    <th>Місто</th>
+                    <th>Замовлень</th>
+                    <th>Остання активність</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in people %}
+                  <tr>
+                    <td>
+                      {% if p.tg_photo_url %}
+                      <img class="people-photo" src="{{ p.tg_photo_url }}" alt="" />
+                      {% endif %}
+                    </td>
+                    <td>
+                      <strong>{{ p.tg_name or p.chat_id }}</strong>
+                      {% if p.tg_username %}<div class="hint">@{{ p.tg_username }}</div>{% endif %}
+                      {% if p.order_name %}<div class="hint">замовлення: {{ p.order_name }}</div>{% endif %}
+                    </td>
+                    <td>{{ p.phone or '—' }}</td>
+                    <td>{{ p.city or '—' }}</td>
+                    <td>{{ p.orders }}</td>
+                    <td class="hint">{{ p.last_at|kyiv or p.created_at|kyiv }}</td>
+                    <td><a class="btn btn-small" href="/admin/live-chats?token={{ token }}&amp;chat_id={{ p.chat_id }}">Чат</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <p class="hint">Поки немає людей у базі{% if query %} за цим пошуком{% endif %}.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+Тема: Доступи для робіт по ТЗ (1С ↔ Silicon bot)
+
+Добрий день!
+
+Надаю все необхідне для робіт згідно ТЗ — копію бази, тестовий бот і веб-сервер.
+
+1) Копія бази
+Файл: silicon_bot_1c_test.db (SQLite, анонімізована).
+Лежить у архіві Silicon_1C_handover.zip / папці handover_1c.
+
+2) Тестовий бот
+Веб-чат (без Telegram): http://127.0.0.1:8001/test-bot
+Це той самий сценарій Олега (прайс → замовлення → рахунок / 1С).
+
+3) Веб-сервер
+API: http://127.0.0.1:8001
+Документація: http://127.0.0.1:8001/docs
+Адмінка: http://127.0.0.1:8001/admin
+Логін: 1c_dev
+Пароль: Silicon1C-Test2026
+
+Запуск у себе (якщо стенд ще не на сервері):
+docker compose -f docker-compose.1c-test.yml up -d --build
+Деталі — README_1C.md та API_1C_CONTRACT.md у архіві.
+
+Що очікуємо від 1С (коротко):
+GET  /counterparties/search
+POST /counterparties
+POST /invoices
+(Basic Auth; повний контракт у API_1C_CONTRACT.md)
+
+Прошу у відповідь:
+— URL тестової 1С + логін/пароль для інтеграції;
+— підтвердження, що три endpoints готові або OData-mapping;
+— тестовий ЄДРПОУ для перевірки.
+
+З повагою,
+Silicon

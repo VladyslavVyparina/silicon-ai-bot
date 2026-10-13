@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заявка #{{ ticket.id }} — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+  <style>
+    .hist { display:flex; flex-direction:column; gap:8px; max-height:70vh; overflow:auto; }
+    .hist-msg { padding:8px 10px; border:1px solid var(--border-color); border-radius:8px; font-size:13px; }
+    .hist-msg.user { background: var(--bg-secondary); }
+    .hist-msg.bot { border-style: dashed; }
+    .hist-msg.admin { background: hsla(152, 55%, 48%, 0.12); }
+    .hist-meta { font-size:11px; color: var(--text-muted); margin-bottom:4px; }
+  </style>
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком</a>
+        <a class="cb-nav-item active" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin and admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Заявка #{{ ticket.id }}</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <a class="btn btn-small" href="/admin/tickets?token={{ token }}">← До заявок</a>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if flash_msg %}<p class="hint" style="color:var(--color-success)">{{ flash_msg }}</p>{% endif %}
+          {% if flash_err %}<p class="hint" style="color:var(--color-danger)">{{ flash_err }}</p>{% endif %}
+          {% if lock %}<p class="hint" style="color:var(--color-warning)">{{ lock }}</p>{% endif %}
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Деталі</div></div>
+            <p><strong>Telegram:</strong> {{ payload.tg_name or '—' }}{% if payload.tg_username %} (@{{ payload.tg_username }}){% endif %}</p>
+            {% if payload.order_name %}<p><strong>Ім'я для замовлення (CRM):</strong> {{ payload.order_name }}</p>{% endif %}
+            <p><strong>Телефон:</strong> {{ payload.phone or '—' }}</p>
+            <p><strong>Статус:</strong> {{ payload.status }}</p>
+            {% if payload.assigned_to %}<p><strong>Взяв:</strong> {{ payload.assigned_to.name }}</p>{% endif %}
+            {% if payload.closed_by %}<p><strong>Закрив:</strong> {{ payload.closed_by.name }}</p>{% endif %}
+            <p style="white-space:pre-wrap"><strong>Контекст заявки:</strong><br>{{ payload.question }}</p>
+            <div class="form-actions-row" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+              {% if ticket.status != 'closed' and (not ticket.assigned_to_id or ticket.assigned_to_id == admin.id or admin.role == 'owner') %}
+              <form method="post" action="/admin/tickets/{{ ticket.id }}/claim">
+                <input type="hidden" name="token" value="{{ token }}" />
+                <button class="btn btn-green" type="submit">Взяти / відповісти в чаті</button>
+              </form>
+              <a class="btn" href="/admin/live-chats?token={{ token }}&chat_id={{ ticket.chat_id }}">Живий чат</a>
+              <form method="post" action="/admin/tickets/{{ ticket.id }}/close">
+                <input type="hidden" name="token" value="{{ token }}" />
+                <button class="btn btn-ghost" type="submit">Закрити заявку</button>
+              </form>
+              {% elif ticket.status == 'closed' %}
+              <a class="btn" href="/admin/live-chats?token={{ token }}&chat_id={{ ticket.chat_id }}">Відкрити чат</a>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Історія переписки{% if ticket.closed_at %} (до закриття){% endif %}</div></div>
+            <div class="hist">
+              {% for m in messages %}
+              <div class="hist-msg {{ m.sender }}">
+                <div class="hist-meta">
+                  {% if m.sender == 'user' %}Клієнт{% elif m.sender == 'admin' %}Менеджер{% else %}Олег (бот){% endif %}
+                  · {{ m.created_at|kyiv }}
+                </div>
+                <div style="white-space:pre-wrap">{{ m.content }}</div>
+              </div>
+              {% else %}
+              <p class="hint">Повідомлень немає.</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

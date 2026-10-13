@@ -1,0 +1,2040 @@
+{
+  "products": {
+    "swim_cap_1plus1": {
+      "name": "Шапочка для плавання (друк 1+1)",
+      "keywords": [
+        "шапоч",
+        "плаванн"
+      ],
+      "print_variant": "1+1",
+      "branding": "друк 1+1",
+      "note": "Сама шапочка +145 грн/шт, якщо потрібен виріб. Друк 1+1 = один колір з обох сторін.",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 1,
+          "price_per_unit": 400.0
+        },
+        {
+          "min_qty": 2,
+          "max_qty": 2,
+          "price_per_unit": 380.0
+        },
+        {
+          "min_qty": 3,
+          "max_qty": 3,
+          "price_per_unit": 360.0
+        },
+        {
+          "min_qty": 4,
+          "max_qty": 4,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 5,
+          "max_qty": 9,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": null,
+          "price_per_unit": 300.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "swim_cap_2plus2": {
+      "name": "Шапочка для плавання (друк 2+2)",
+      "keywords": [],
+      "print_variant": "2+2",
+      "branding": "друк 2+2",
+      "note": "Сама шапочка +145 грн/шт, якщо потрібен виріб. Друк 1+1 = один колір з обох сторін.",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 1,
+          "price_per_unit": 800.0
+        },
+        {
+          "min_qty": 2,
+          "max_qty": 2,
+          "price_per_unit": 760.0
+        },
+        {
+          "min_qty": 3,
+          "max_qty": 3,
+          "price_per_unit": 720.0
+        },
+        {
+          "min_qty": 4,
+          "max_qty": 4,
+          "price_per_unit": 700.0
+        },
+        {
+          "min_qty": 5,
+          "max_qty": 9,
+          "price_per_unit": 680.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": null,
+          "price_per_unit": 600.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "swim_cap_3plus3": {
+      "name": "Шапочка для плавання (друк 3+3)",
+      "keywords": [],
+      "print_variant": "3+3",
+      "branding": "друк 3+3",
+      "note": "Сама шапочка +145 грн/шт, якщо потрібен виріб. Друк 1+1 = один колір з обох сторін.",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 1,
+          "price_per_unit": 1200.0
+        },
+        {
+          "min_qty": 2,
+          "max_qty": 2,
+          "price_per_unit": 1140.0
+        },
+        {
+          "min_qty": 3,
+          "max_qty": 3,
+          "price_per_unit": 1080.0
+        },
+        {
+          "min_qty": 4,
+          "max_qty": 4,
+          "price_per_unit": 1050.0
+        },
+        {
+          "min_qty": 5,
+          "max_qty": 9,
+          "price_per_unit": 1020.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": null,
+          "price_per_unit": 900.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "swim_cap_4plus4": {
+      "name": "Шапочка для плавання (друк 4+4)",
+      "keywords": [],
+      "print_variant": "4+4",
+      "branding": "друк 4+4",
+      "note": "Сама шапочка +145 грн/шт, якщо потрібен виріб. Друк 1+1 = один колір з обох сторін.",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 1,
+          "price_per_unit": 1600.0
+        },
+        {
+          "min_qty": 2,
+          "max_qty": 2,
+          "price_per_unit": 1520.0
+        },
+        {
+          "min_qty": 3,
+          "max_qty": 3,
+          "price_per_unit": 1440.0
+        },
+        {
+          "min_qty": 4,
+          "max_qty": 4,
+          "price_per_unit": 1400.0
+        },
+        {
+          "min_qty": 5,
+          "max_qty": 9,
+          "price_per_unit": 1360.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": null,
+          "price_per_unit": 1200.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "eco_cup_350_print": {
+      "name": "Еко-чашка 350 мл з друком 1 колір",
+      "keywords": [
+        "еко-чаш",
+        "екочаш",
+        "чашк"
+      ],
+      "branding": "друк лого 1 колір",
+      "size_ml": "350",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 9,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": 19,
+          "price_per_unit": 210.0
+        },
+        {
+          "min_qty": 20,
+          "max_qty": 29,
+          "price_per_unit": 135.0
+        },
+        {
+          "min_qty": 30,
+          "max_qty": null,
+          "price_per_unit": 120.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "note": "Друк лише на силіконовому тримачі. На стакані друк не робимо. Кольоровий друк — лише за векторним макетом через менеджера."
+    },
+    "eco_cup_450_print": {
+      "name": "Еко-чашка 450 мл з друком 1 колір",
+      "keywords": [],
+      "branding": "друк лого 1 колір",
+      "size_ml": "450",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 9,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": 19,
+          "price_per_unit": 210.0
+        },
+        {
+          "min_qty": 20,
+          "max_qty": 29,
+          "price_per_unit": 145.0
+        },
+        {
+          "min_qty": 30,
+          "max_qty": null,
+          "price_per_unit": 130.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "note": "Друк лише на силіконовому тримачі. На стакані друк не робимо."
+    },
+    "lanyard_15mm": {
+      "name": "Шнурок для бейджа з логотипом і карабіном, 15 мм",
+      "keywords": [
+        "шнур",
+        "бейдж"
+      ],
+      "width_mm": "15",
+      "branding": "з логотипом і карабіном",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 29.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 28.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 27.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 27.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 26.0
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 25.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 24.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "accessories": {
+        "second_carabiner": 6.0,
+        "fastex": 12.0,
+        "safety_break": 12.0,
+        "sewn_retractor": null
+      }
+    },
+    "lanyard_20mm": {
+      "name": "Шнурок для бейджа з логотипом і карабіном, 20 мм",
+      "keywords": [],
+      "width_mm": "20",
+      "branding": "з логотипом і карабіном",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 31.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 30.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 30.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 29.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 27.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 26.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 25.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "accessories": {
+        "second_carabiner": 6.0,
+        "fastex": 12.0,
+        "safety_break": 12.0,
+        "sewn_retractor": 25.0
+      }
+    },
+    "lanyard_25mm": {
+      "name": "Шнурок для бейджа з логотипом і карабіном, 25 мм",
+      "keywords": [],
+      "width_mm": "25",
+      "branding": "з логотипом і карабіном",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 33.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 32.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 32.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 31.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 30.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 29.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 27.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "accessories": {
+        "second_carabiner": 6.0,
+        "fastex": 12.0,
+        "safety_break": 12.0,
+        "sewn_retractor": null
+      }
+    },
+    "lanyard_30mm": {
+      "name": "Шнурок для бейджа з логотипом і карабіном, 30 мм",
+      "keywords": [],
+      "width_mm": "30",
+      "branding": "з логотипом і карабіном",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 36.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 35.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 35.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 34.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 33.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 32.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 31.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 30.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "accessories": {
+        "second_carabiner": 6.0,
+        "fastex": 12.0,
+        "safety_break": 12.0,
+        "sewn_retractor": null
+      }
+    },
+    "lanyard_40mm": {
+      "name": "Шнурок для бейджа з логотипом і карабіном, 40 мм",
+      "keywords": [],
+      "width_mm": "40",
+      "branding": "з логотипом і карабіном",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 40.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 39.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 39.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 38.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 37.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 36.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 35.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 34.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "accessories": {
+        "second_carabiner": 6.0,
+        "fastex": 12.0,
+        "safety_break": 12.0,
+        "sewn_retractor": null
+      }
+    },
+    "reflective_300_print": {
+      "name": "Світловідбиваючий браслет 300×30 мм (1 колір)",
+      "keywords": [
+        "світловідб",
+        "світло відб",
+        "відбивн",
+        "рефлект",
+        "reflective",
+        "reflect"
+      ],
+      "sizes": [
+        "300x30"
+      ],
+      "branding": "друк 1 колір",
+      "print_variant": "1color",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 35.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 26.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 24.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 22.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "reflective_300_color": {
+      "name": "Світловідбиваючий браслет 300×30 мм (кольоровий друк)",
+      "keywords": [],
+      "sizes": [
+        "300x30"
+      ],
+      "branding": "кольоровий друк",
+      "print_variant": "color",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 40.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 38.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 37.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 34.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 32.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "reflective_400_print": {
+      "name": "Світловідбиваючий браслет 400×30 мм (1 колір)",
+      "keywords": [],
+      "sizes": [
+        "400x30"
+      ],
+      "branding": "друк 1 колір",
+      "print_variant": "1color",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 35.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 32.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 30.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 30.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 26.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "reflective_400_color": {
+      "name": "Світловідбиваючий браслет 400×30 мм (кольоровий друк)",
+      "keywords": [],
+      "sizes": [
+        "400x30"
+      ],
+      "branding": "кольоровий друк",
+      "print_variant": "color",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 54.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 51.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 50.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 40.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 36.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "slap_215_print": {
+      "name": "Slap-браслет 215×25 мм з друком 1 колір",
+      "keywords": [
+        "slap",
+        "слеп"
+      ],
+      "branding": "друк 1 колір",
+      "print_colors": 1,
+      "extra_color_uah": 10.0,
+      "max_print_colors": 4,
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 65.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 60.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 55.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 53.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 50.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "note": "Макс. 4 кольори друку. +10 грн/шт за кожен наступний колір. Кольори браслетів: https://silicon.com.ua/silikonovi-slep-braslety"
+    },
+    "slap_255_print": {
+      "name": "Slap-браслет 255×25 мм з друком 1 колір",
+      "keywords": [],
+      "branding": "друк 1 колір",
+      "print_colors": 1,
+      "extra_color_uah": 10.0,
+      "max_print_colors": 4,
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 70.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 65.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 499,
+          "price_per_unit": 60.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 2999,
+          "price_per_unit": 55.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": null,
+          "price_per_unit": 50.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "tyvek_blank": {
+      "name": "Контрольний браслет Tyvek (без друку)",
+      "keywords": [],
+      "branding": "без друку",
+      "print_variant": "blank",
+      "tiers": [
+        {
+          "min_qty": 100,
+          "max_qty": 299,
+          "price_per_unit": 2.35
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 2.3
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 2.25
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 2999,
+          "price_per_unit": 1.8
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": 4999,
+          "price_per_unit": 1.7
+        },
+        {
+          "min_qty": 5000,
+          "max_qty": 9999,
+          "price_per_unit": 1.6
+        },
+        {
+          "min_qty": 10000,
+          "max_qty": 19999,
+          "price_per_unit": 1.5
+        },
+        {
+          "min_qty": 20000,
+          "max_qty": 39999,
+          "price_per_unit": 1.45
+        },
+        {
+          "min_qty": 40000,
+          "max_qty": null,
+          "price_per_unit": 1.3
+        }
+      ],
+      "production_days": {
+        "standard": 3,
+        "urgent": 2
+      },
+      "production_note": "Строк 2–3 робочі дні."
+    },
+    "tyvek_print": {
+      "name": "Контрольний браслет Tyvek (1 колір)",
+      "keywords": [
+        "tyvek",
+        "контрол"
+      ],
+      "branding": "друк 1 колір (чорний)",
+      "print_variant": "1color",
+      "tiers": [
+        {
+          "min_qty": 100,
+          "max_qty": 299,
+          "price_per_unit": 2.85
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 2.75
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 2.7
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 2999,
+          "price_per_unit": 2.5
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": 4999,
+          "price_per_unit": 2.1
+        },
+        {
+          "min_qty": 5000,
+          "max_qty": 9999,
+          "price_per_unit": 2.0
+        },
+        {
+          "min_qty": 10000,
+          "max_qty": 19999,
+          "price_per_unit": 1.9
+        },
+        {
+          "min_qty": 20000,
+          "max_qty": 39999,
+          "price_per_unit": 1.8
+        },
+        {
+          "min_qty": 40000,
+          "max_qty": null,
+          "price_per_unit": 1.7
+        }
+      ],
+      "production_days": {
+        "standard": 3,
+        "urgent": 2
+      },
+      "production_note": "Строк 2–3 робочі дні. 1 колір = чорний друк на будь-якому кольорі браслета. https://silicon.com.ua/kontrolni-braslety-tyvek"
+    },
+    "tyvek_color": {
+      "name": "Контрольний браслет Tyvek (кольоровий друк)",
+      "keywords": [],
+      "branding": "кольоровий друк",
+      "print_variant": "color",
+      "tiers": [
+        {
+          "min_qty": 100,
+          "max_qty": 299,
+          "price_per_unit": 3.4
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 3.2
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 3.1
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 2999,
+          "price_per_unit": 3.0
+        },
+        {
+          "min_qty": 3000,
+          "max_qty": 4999,
+          "price_per_unit": 2.9
+        },
+        {
+          "min_qty": 5000,
+          "max_qty": 9999,
+          "price_per_unit": 2.8
+        },
+        {
+          "min_qty": 10000,
+          "max_qty": 19999,
+          "price_per_unit": 2.7
+        },
+        {
+          "min_qty": 20000,
+          "max_qty": 39999,
+          "price_per_unit": 2.3
+        },
+        {
+          "min_qty": 40000,
+          "max_qty": null,
+          "price_per_unit": 2.0
+        }
+      ],
+      "production_days": {
+        "standard": 3,
+        "urgent": 2
+      },
+      "production_note": "Строк 2–3 робочі дні. Кольоровий друк за цим прайсом — лише на білих браслетах. Рекомендований розмір лого 15×140 мм. УФ на кольорових — індивідуально за макетом."
+    },
+    "retractor_sewn_20_print": {
+      "name": "Ретрактор пришивний 20 мм з друком",
+      "keywords": [
+        "ретрактор",
+        "кліп рулетк",
+        "витяжн"
+      ],
+      "branding": "з друком",
+      "tiers": [
+        {
+          "min_qty": 10,
+          "max_qty": 99,
+          "price_per_unit": 100.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 699,
+          "price_per_unit": 75.0
+        },
+        {
+          "min_qty": 700,
+          "max_qty": null,
+          "price_per_unit": 60.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–10 робочих днів залежно від кількості."
+    },
+    "retractor_sewn_20_blank": {
+      "name": "Ретрактор пришивний 20 мм без друку",
+      "keywords": [],
+      "branding": "без друку",
+      "tiers": [
+        {
+          "min_qty": 10,
+          "max_qty": 99,
+          "price_per_unit": 25.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 499,
+          "price_per_unit": 24.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 699,
+          "price_per_unit": 23.0
+        },
+        {
+          "min_qty": 700,
+          "max_qty": null,
+          "price_per_unit": 22.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–10 робочих днів залежно від кількості."
+    },
+    "retractor_55_print": {
+      "name": "Ретрактор 55 мм з кільцем та кліпсою (з друком)",
+      "keywords": [],
+      "branding": "з друком",
+      "tiers": [
+        {
+          "min_qty": 10,
+          "max_qty": 99,
+          "price_per_unit": 155.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 499,
+          "price_per_unit": 130.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 699,
+          "price_per_unit": 105.0
+        },
+        {
+          "min_qty": 700,
+          "max_qty": null,
+          "price_per_unit": 85.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–10 робочих днів залежно від кількості. Також: кліп-рулетка, бейдж з витяжним тросиком."
+    },
+    "retractor_55_blank": {
+      "name": "Ретрактор 55 мм з кільцем та кліпсою (без друку)",
+      "keywords": [],
+      "branding": "без друку",
+      "tiers": [
+        {
+          "min_qty": 10,
+          "max_qty": 49,
+          "price_per_unit": 80.0
+        },
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 75.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 499,
+          "price_per_unit": 60.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 699,
+          "price_per_unit": 55.0
+        },
+        {
+          "min_qty": 700,
+          "max_qty": null,
+          "price_per_unit": 50.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–10 робочих днів залежно від кількості."
+    },
+    "retractor_uv": {
+      "name": "Ретрактор 55 мм з кільцем та кліпсою (з друком)",
+      "keywords": [],
+      "branding": "з друком",
+      "tiers": [
+        {
+          "min_qty": 10,
+          "max_qty": 99,
+          "price_per_unit": 155.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 499,
+          "price_per_unit": 130.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 699,
+          "price_per_unit": 105.0
+        },
+        {
+          "min_qty": 700,
+          "max_qty": null,
+          "price_per_unit": 85.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–10 робочих днів залежно від кількості."
+    },
+    "brelok_carabiner": {
+      "name": "Брелок з карабіном",
+      "keywords": [
+        "брелок"
+      ],
+      "width_mm": null,
+      "branding": "з логотипом",
+      "widths": {
+        "20": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 25.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 24.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 24.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 23.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 23.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 22.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 21.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 20.0
+          }
+        ],
+        "25": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 27.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 26.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 26.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 25.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 25.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 24.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 23.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 22.0
+          }
+        ]
+      },
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 25.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 24.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 24.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 23.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 23.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 22.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 21.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 20.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "brelok_black_carabiner": {
+      "name": "Брелок з чорним карабіном",
+      "keywords": [],
+      "width_mm": null,
+      "branding": "з логотипом",
+      "widths": {
+        "20": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 43.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 42.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 42.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 41.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 40.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 39.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 38.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 37.0
+          }
+        ],
+        "25": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 45.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 44.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 44.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 43.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 42.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 41.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 40.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 39.0
+          }
+        ]
+      },
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 43.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 42.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 42.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 41.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 40.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 39.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 38.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 37.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "brelok_ring": {
+      "name": "Брелок з кільцем",
+      "keywords": [],
+      "width_mm": null,
+      "branding": "з логотипом",
+      "widths": {
+        "20": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 23.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 22.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 22.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 21.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 21.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 20.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 20.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 19.0
+          }
+        ],
+        "25": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 25.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 24.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 24.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 23.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 23.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 22.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 22.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 21.0
+          }
+        ]
+      },
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 23.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 22.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 22.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 21.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 21.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 20.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 20.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 19.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "brelok_color_carabiner": {
+      "name": "Брелок з кольоровим карабіном",
+      "keywords": [],
+      "width_mm": null,
+      "branding": "з логотипом",
+      "widths": {
+        "20": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 50.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 49.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 49.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 48.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 48.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 47.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 47.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 46.0
+          }
+        ],
+        "25": [
+          {
+            "min_qty": 50,
+            "max_qty": 99,
+            "price_per_unit": 52.0
+          },
+          {
+            "min_qty": 100,
+            "max_qty": 199,
+            "price_per_unit": 51.5
+          },
+          {
+            "min_qty": 200,
+            "max_qty": 299,
+            "price_per_unit": 51.0
+          },
+          {
+            "min_qty": 300,
+            "max_qty": 399,
+            "price_per_unit": 50.5
+          },
+          {
+            "min_qty": 400,
+            "max_qty": 499,
+            "price_per_unit": 50.0
+          },
+          {
+            "min_qty": 500,
+            "max_qty": 999,
+            "price_per_unit": 49.5
+          },
+          {
+            "min_qty": 1000,
+            "max_qty": 1999,
+            "price_per_unit": 49.0
+          },
+          {
+            "min_qty": 2000,
+            "max_qty": null,
+            "price_per_unit": 48.0
+          }
+        ]
+      },
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 50.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 49.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 49.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 48.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 48.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 47.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 47.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 46.0
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "fabric_bracelet_15mm": {
+      "name": "Тканинний браслет 15 мм",
+      "keywords": [
+        "тканинн"
+      ],
+      "branding": "стандарт",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 27.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 24.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 23.0
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 20.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 19.0
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 18.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 17.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      },
+      "note": "Ширина стрічки 15 мм. Довжина в розгорнутому вигляді 350 мм. Фіксатори чорний/білий — на ціну не впливає. Друк лого зовні; внутрішня сторона — фон або без друку."
+    },
+    "silicone_bracelet_12mm": {
+      "name": "Силіконовий браслет 12 мм",
+      "keywords": [
+        "силіконовий браслет",
+        "силіконові браслет",
+        "silicone"
+      ],
+      "sizes": [
+        "202x12x2",
+        "180x12x2",
+        "160x12x2"
+      ],
+      "branding": "одноколірний друк лого",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 9,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": 29,
+          "price_per_unit": 50.0
+        },
+        {
+          "min_qty": 30,
+          "max_qty": 49,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 17.5
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 11.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 11.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 10.5
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 9.2
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": null,
+          "price_per_unit": 8.5
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–7 робочих днів. Від тиражу може збільшуватись. Кольоровий друк — індивідуально за макетом."
+    },
+    "silicone_bracelet_5mm": {
+      "name": "Силіконовий браслет 5 мм",
+      "keywords": [],
+      "sizes": [
+        "202x5x2",
+        "180x5x2",
+        "160x5x2"
+      ],
+      "branding": "одноколірний друк лого",
+      "tiers": [
+        {
+          "min_qty": 1,
+          "max_qty": 9,
+          "price_per_unit": 350.0
+        },
+        {
+          "min_qty": 10,
+          "max_qty": 29,
+          "price_per_unit": 50.0
+        },
+        {
+          "min_qty": 30,
+          "max_qty": 49,
+          "price_per_unit": 28.0
+        },
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 17.5
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 11.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 11.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 10.5
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 9.2
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": null,
+          "price_per_unit": 8.5
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–7 робочих днів. Від тиражу може збільшуватись. Кольоровий друк — індивідуально за макетом."
+    },
+    "silicone_bracelet_20mm": {
+      "name": "Силіконовий браслет 20 мм",
+      "keywords": [],
+      "sizes": [
+        "202x20x2",
+        "180x20x2",
+        "160x20x2"
+      ],
+      "branding": "одноколірний друк лого",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 35.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 23.0
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 22.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 499,
+          "price_per_unit": 21.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 18.4
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": null,
+          "price_per_unit": 17.0
+        }
+      ],
+      "production_days": {
+        "standard": 7,
+        "urgent": 5
+      },
+      "production_note": "Строк 5–7 робочих днів. Від тиражу може збільшуватись. Кольоровий друк — індивідуально за макетом."
+    },
+    "ribbon_atlas_20mm": {
+      "name": "Стрічка атласна 20 мм",
+      "keywords": [
+        "атласн"
+      ],
+      "branding": "стандарт",
+      "tiers": [
+        {
+          "min_qty": 50,
+          "max_qty": 99,
+          "price_per_unit": 27.0
+        },
+        {
+          "min_qty": 100,
+          "max_qty": 199,
+          "price_per_unit": 26.5
+        },
+        {
+          "min_qty": 200,
+          "max_qty": 299,
+          "price_per_unit": 26.0
+        },
+        {
+          "min_qty": 300,
+          "max_qty": 399,
+          "price_per_unit": 25.5
+        },
+        {
+          "min_qty": 400,
+          "max_qty": 499,
+          "price_per_unit": 25.0
+        },
+        {
+          "min_qty": 500,
+          "max_qty": 999,
+          "price_per_unit": 23.5
+        },
+        {
+          "min_qty": 1000,
+          "max_qty": 1999,
+          "price_per_unit": 22.0
+        },
+        {
+          "min_qty": 2000,
+          "max_qty": null,
+          "price_per_unit": 21.5
+        }
+      ],
+      "production_days": {
+        "standard": 10,
+        "urgent": 5
+      }
+    },
+    "badge_pocket_65x115": {
+      "name": "Кишенька для бейджа 65×115 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 12.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_100x85": {
+      "name": "Кишенька для бейджа 100×85 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 12.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_83x135": {
+      "name": "Кишенька для бейджа 83×135 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 12.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_115x100": {
+      "name": "Кишенька для бейджа 115×100 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 12.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_96x150": {
+      "name": "Кишенька для бейджа 96×150 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 15.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_a6": {
+      "name": "Кишенька для бейджа А6 118×182 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 16.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "badge_pocket_a5": {
+      "name": "Кишенька для бейджа А5 162×242 мм",
+      "keywords": [],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 22.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    },
+    "cardholder_plastic_blank": {
+      "name": "Кардхолдер пластиковий 55×85 мм без друку",
+      "keywords": ["кардхолдер", "картхолдер"],
+      "tiers": [{"min_qty": 1, "max_qty": null, "price_per_unit": 38.0}],
+      "production_days": {"standard": 3, "urgent": 1}
+    }
+  },
+  "size_to_product_key": {
+    "12": "silicone_bracelet_12mm",
+    "5": "silicone_bracelet_5mm",
+    "20": "silicone_bracelet_20mm"
+  },
+  "lanyard_width_to_key": {
+    "15": "lanyard_15mm",
+    "20": "lanyard_20mm",
+    "25": "lanyard_25mm",
+    "30": "lanyard_30mm",
+    "40": "lanyard_40mm"
+  },
+  "templates": {
+    "intro": "Я Олег, консультант компанії Silicon.",
+    "company": "Ми Silicon. Робимо браслети — силіконові, RFID, slap, Tyvek та інші — і наносимо логотипи на продукцію.",
+    "delivery": "По Україні — Нова Пошта або транспорт, є самовивіз. Накладеним платежем не відправляємо. Адресу зберемо вже на оформленні.",
+    "payment_methods": "Оплата карткою онлайн, рахунок для ФОП/ТОВ або готівкою в офісі (100% передплата). Контакти: https://silicon.com.ua/kontakti",
+    "manager": "Менеджер компанії Silicon.",
+    "layout": "Макет — AI, EPS, SVG або PDF. Якщо лого немає, адаптуємо під виробництво. Друковану продукцію запускаємо лише після повної оплати та погодження макету.",
+    "production_terms": "Термін виготовлення силіконових браслетів з одноколірним друком лого — 5–7 робочих днів. Термінове (×2 до прайсу) — лише після підтвердження завантаження менеджером.",
+    "silicone_terms": "Термін виготовлення силіконових браслетів з одноколірним друком лого — 5–7 робочих днів. Від кількості строк може збільшуватись. Кольоровий друк прораховується індивідуально згідно макету.",
+    "contacts_url": "https://silicon.com.ua/kontakti",
+    "lanyard_general": "З друком логотипу є доступні розміри стрічки по ширині:\n15 мм, 20 мм, 25 мм, 30 мм, 40 мм — гладенька стрічка\n15 мм, 20 мм, 25 мм — репсова стрічка\nСтрок виготовлення близько 10 робочих днів.\nВам потрібна гладенька стрічка чи репсова, в якій ширині та скільки штук?"
+  }
+}

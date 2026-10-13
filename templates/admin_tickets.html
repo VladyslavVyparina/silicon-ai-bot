@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заявки менеджеру — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+  <style>
+    .ticket-group { border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden; }
+    .ticket-group-head { padding: 10px 12px; background: var(--bg-secondary); font-weight: 600; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+    .ticket-row { padding: 10px 12px; border-top: 1px solid var(--border-color); display:grid; grid-template-columns: 64px 1fr auto; gap:10px; align-items:start; }
+    .ticket-row.claimed { background: hsla(178, 75%, 45%, 0.08); border-left: 3px solid var(--color-primary); }
+    .ticket-row.mine { background: hsla(152, 55%, 48%, 0.10); border-left: 3px solid var(--color-success); }
+    .ticket-actions { display:flex; flex-direction:column; gap:6px; min-width:140px; }
+    .assignee-pill { font-size:11px; color: var(--color-primary); font-weight:600; }
+    .stats-mini { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:10px; margin-bottom:16px; }
+  </style>
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком{% if stats and stats.invoice_notices %} ({{ stats.invoice_notices }}){% endif %}</a>
+        <a class="cb-nav-item active" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin and admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Заявки менеджеру</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if flash_msg %}<p class="hint" style="color:var(--color-success)">{{ flash_msg }}</p>{% endif %}
+          {% if flash_err %}<p class="hint" style="color:var(--color-danger)">{{ flash_err }}</p>{% endif %}
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Статистика менеджерів</div></div>
+            <div class="stats-mini">
+              {% for m in stats.manager_stats %}
+              <div class="stat-card">
+                <div class="cb-stat-label">{{ m.name }}{% if m.role == 'owner' %} · адмін{% endif %}</div>
+                <div class="cb-stat-value" style="font-size:22px">{{ m.closed }}</div>
+                <div class="cb-stat-sub">закрито · активних: {{ m.active }}</div>
+              </div>
+              {% else %}
+              <p class="hint">Поки немає даних.</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Відкриті (згруповано по людині)</div></div>
+            {% if open_groups %}
+              {% for g in open_groups %}
+              <div class="ticket-group">
+                <div class="ticket-group-head">
+                  <span>{{ g.tg_name or g.chat_id }}{% if g.phone %} · {{ g.phone }}{% endif %}</span>
+                  <span class="hint">заявок: {{ g.tickets|length }}</span>
+                </div>
+                {% for t in g.tickets %}
+                <div class="ticket-row {% if t.assigned_to %}claimed{% endif %} {% if t.assigned_to and t.assigned_to.id == admin.id %}mine{% endif %}">
+                  <div><strong>#{{ t.id }}</strong><div class="hint">{{ t.status }}</div></div>
+                  <div>
+                    {% if t.assigned_to %}<div class="assignee-pill">Взяв: {{ t.assigned_to.name }}</div>{% endif %}
+                    <div style="white-space:pre-wrap;font-size:13px;line-height:1.35;max-width:640px">{{ t.question[:700] }}{% if t.question|length > 700 %}…{% endif %}</div>
+                  </div>
+                  <div class="ticket-actions">
+                    {% if not t.assigned_to or t.assigned_to.id == admin.id or admin.role == 'owner' %}
+                    <form method="post" action="/admin/tickets/{{ t.id }}/claim">
+                      <input type="hidden" name="token" value="{{ token }}" />
+                      <button class="btn btn-small btn-green" type="submit">{% if t.assigned_to and t.assigned_to.id == admin.id %}Відкрити{% else %}Взяти заявку{% endif %}</button>
+                    </form>
+                    <a class="btn btn-small" href="/admin/tickets/{{ t.id }}?token={{ token }}">Історія</a>
+                    <form method="post" action="/admin/tickets/{{ t.id }}/close">
+                      <input type="hidden" name="token" value="{{ token }}" />
+                      <button class="btn btn-small btn-ghost" type="submit">Закрити</button>
+                    </form>
+                    {% else %}
+                    <span class="hint">Зайнято · {{ t.assigned_to.name }}</span>
+                    <a class="btn btn-small btn-ghost" href="/admin/tickets/{{ t.id }}?token={{ token }}">Переглянути</a>
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="hint">Немає відкритих заявок.</p>
+            {% endif %}
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Історія заявок (згруповано)</div></div>
+            {% if all_groups %}
+              {% for g in all_groups %}
+              <div class="ticket-group">
+                <div class="ticket-group-head">
+                  <span>{{ g.tg_name or g.chat_id }}{% if g.phone %} · {{ g.phone }}{% endif %}</span>
+                  <span class="hint">{{ g.tickets|length }} заявок</span>
+                </div>
+                {% for t in g.tickets %}
+                <div class="ticket-row {% if t.status == 'closed' %}{% elif t.assigned_to %}claimed{% endif %}">
+                  <div><strong>#{{ t.id }}</strong><div class="hint">{{ t.status }}</div></div>
+                  <div>
+                    {% if t.assigned_to %}<div class="assignee-pill">Менеджер: {{ t.assigned_to.name }}</div>{% endif %}
+                    {% if t.closed_by %}<div class="hint">Закрив: {{ t.closed_by.name }}</div>{% endif %}
+                    <div style="white-space:pre-wrap;font-size:13px;line-height:1.35;max-width:640px">{{ t.question[:400] }}{% if t.question|length > 400 %}…{% endif %}</div>
+                  </div>
+                  <div class="ticket-actions">
+                    <a class="btn btn-small" href="/admin/tickets/{{ t.id }}?token={{ token }}">Історія чату</a>
+                    {% if t.status != 'closed' and (not t.assigned_to or t.assigned_to.id == admin.id or admin.role == 'owner') %}
+                    <form method="post" action="/admin/tickets/{{ t.id }}/close">
+                      <input type="hidden" name="token" value="{{ token }}" />
+                      <button class="btn btn-small btn-ghost" type="submit">Закрити</button>
+                    </form>
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="hint">Порожньо.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

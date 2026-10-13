@@ -1,0 +1,12 @@
+uploads/avatars/*
+!uploads/avatars/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+data/*.db
+data/zoom*
+data/zoom_chunks/
+.env
+.DS_Store

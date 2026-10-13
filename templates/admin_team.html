@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Команда — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        <a class="cb-nav-item active" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Команда менеджерів</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if msg %}<div class="ok">{{ msg }}</div>{% endif %}
+          {% if err %}<div class="err">{{ err }}</div>{% endif %}
+
+          {% if invite_creds %}
+          <div class="card" style="border-color: var(--color-warning);">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="key-round"></i> Доступ менеджера (показано один раз)</div>
+            </div>
+            <p class="hint">
+              Скопіюйте дані і надішліть менеджеру в Telegram / Viber / SMS.
+            </p>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Ім'я</label>
+                <input id="cred-name" type="text" readonly value="{{ invite_creds.full_name }}" />
+              </div>
+              <div class="form-row">
+                <label>Email / логін</label>
+                <input id="cred-email" type="text" readonly value="{{ invite_creds.email }}" />
+              </div>
+              <div class="form-row">
+                <label>Пароль</label>
+                <input id="cred-pass" type="text" readonly value="{{ invite_creds.password }}" style="font-family:var(--font-mono);" />
+              </div>
+            </div>
+            <div class="form-actions-row">
+              <button type="button" class="btn btn-primary" id="copy-creds">Скопіювати все</button>
+            </div>
+            <p class="hint" style="margin-top:8px;">Після оновлення сторінки пароль більше не покажеться.</p>
+          </div>
+          <script>
+            (function() {
+              function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+              }
+              var btn = document.getElementById('copy-creds');
+              if (!btn) return;
+              btn.addEventListener('click', function() {
+                var name = (document.getElementById('cred-name') || {}).value || '';
+                var email = (document.getElementById('cred-email') || {}).value || '';
+                var pass = (document.getElementById('cred-pass') || {}).value || '';
+                var text = [
+                  'Доступ до Silicon Admin',
+                  "Ім'я: " + name,
+                  'Email / логін: ' + email,
+                  'Пароль: ' + pass,
+                  'Вхід: відкрийте /admin і увійдіть email + пароль'
+                ].join('\n');
+                if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(text).then(function() {
+                    btn.textContent = 'Скопійовано';
+                  }).catch(function() {
+                    fallbackCopy(text);
+                    btn.textContent = 'Скопійовано';
+                  });
+                } else {
+                  fallbackCopy(text);
+                  btn.textContent = 'Скопійовано';
+                }
+              });
+            })();
+          </script>
+          {% endif %}
+
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="user-plus"></i> Додати менеджера</div>
+            </div>
+            <p class="hint">Вкажіть ім'я та email (логін). SMTP купувати не обов'язково — після створення пароль покажеться тут для ручної відправки.</p>
+            <form method="post" action="/admin/team/invite">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <div class="form-grid">
+                <div class="form-row">
+                  <label>Ім'я менеджера</label>
+                  <input type="text" name="full_name" required placeholder="Ім'я Прізвище" />
+                </div>
+                <div class="form-row">
+                  <label>Email (логін для входу)</label>
+                  <input type="email" name="email" required placeholder="manager@company.com" />
+                </div>
+              </div>
+              <div class="form-actions-row">
+                <button type="submit" class="btn btn-primary">Надати доступ</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Учасники</div></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Ім'я</th><th>Email / логін</th><th>Роль</th><th>Статус</th><th></th></tr>
+                </thead>
+                <tbody>
+                {% for a in admins %}
+                  <tr>
+                    <td>{{ a.full_name or '—' }}</td>
+                    <td><code>{{ a.email }}</code></td>
+                    <td>{{ 'Власник' if a.role == 'owner' else 'Менеджер' }}</td>
+                    <td>{% if a.is_active %}<span style="color:var(--color-success)">активний</span>{% else %}вимкнено{% endif %}</td>
+                    <td>
+                      {% if a.role != 'owner' %}
+                      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+                        {% if a.is_active %}
+                        <form method="post" action="/admin/team/{{ a.id }}/deactivate" style="display:inline">
+                          <input type="hidden" name="token" value="{{ token }}" />
+                          <button type="submit" class="btn btn-small btn-danger">Деактивувати</button>
+                        </form>
+                        {% endif %}
+                        <form method="post" action="/admin/team/{{ a.id }}/delete" style="display:inline"
+                              onsubmit="return confirm('Видалити менеджера {{ a.full_name or a.email }}? Цю дію неможливо скасувати.');">
+                          <input type="hidden" name="token" value="{{ token }}" />
+                          <button type="submit" class="btn btn-small btn-ghost">Видалити</button>
+                        </form>
+                      </div>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

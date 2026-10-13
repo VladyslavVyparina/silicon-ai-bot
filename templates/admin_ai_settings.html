@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI / Промпт — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item active" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">AI: промпт, модель, база знань</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if msg %}<p class="hint" style="color:var(--color-success)">{{ msg }}</p>{% endif %}
+          {% if err %}<p class="hint" style="color:var(--color-danger)">{{ err }}</p>{% endif %}
+          <p class="hint">Доступно лише власнику (адміну). Менеджери цей розділ не бачать.</p>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Модель ChatGPT / OpenAI</div></div>
+            <form method="post" action="/admin/ai-settings/model">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <label for="model">Актуальна модель</label>
+              <select id="model" name="model" required>
+                {% for m in models %}
+                <option value="{{ m }}" {% if m == current_model %}selected{% endif %}>{{ m }}</option>
+                {% endfor %}
+              </select>
+              <div style="margin-top:10px">
+                <button class="btn btn-green" type="submit">Зберегти модель</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Промпт / інструкції консультанта</div></div>
+            <form method="post" action="/admin/ai-settings/prompt">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <label for="prompt">Текст інструкцій для AI-агента</label>
+              <textarea id="prompt" name="prompt" rows="22" style="font-family:var(--font-mono);font-size:12px;width:100%">{{ prompt }}</textarea>
+              <div style="margin-top:10px">
+                <button class="btn btn-green" type="submit">Зберегти промпт</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">База знань (файли для агента)</div></div>
+            <form method="post" action="/admin/ai-settings/knowledge" enctype="multipart/form-data">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <label for="file">Завантажити .txt / .md / .csv / .json</label>
+              <input id="file" type="file" name="file" required />
+              <div style="margin-top:10px">
+                <button class="btn btn-green" type="submit">Залити файл</button>
+              </div>
+            </form>
+            <div style="margin-top:16px">
+              {% if knowledge_files %}
+              <table>
+                <thead><tr><th>Файл</th><th>Розмір</th><th></th></tr></thead>
+                <tbody>
+                {% for f in knowledge_files %}
+                  <tr>
+                    <td><code>{{ f.name }}</code></td>
+                    <td>{{ f.size }} B</td>
+                    <td>
+                      <form method="post" action="/admin/ai-settings/knowledge/delete" style="display:inline">
+                        <input type="hidden" name="token" value="{{ token }}" />
+                        <input type="hidden" name="filename" value="{{ f.name }}" />
+                        <button class="btn btn-small btn-ghost" type="submit">Видалити</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <p class="hint">Файлів ще немає.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

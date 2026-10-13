@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вхід — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+</head>
+<body>
+  <div class="cb-app" style="justify-content:center;align-items:center;">
+    <div class="card" style="width:min(420px,92vw);margin:40px auto;">
+      <div class="cb-card-header">
+        <div class="cb-card-title">Silicon · Адмін-панель</div>
+      </div>
+      <p class="hint">Увійдіть email-ом (він же логін) і паролем.</p>
+      {% if error %}<div class="err">{{ error }}</div>{% endif %}
+      <form method="post" action="/admin/login">
+        <div class="form-row">
+          <label for="identifier">Email</label>
+          <input id="identifier" type="email" name="identifier" required autofocus autocomplete="username" />
+        </div>
+        <div class="form-row">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" name="password" required autocomplete="current-password" />
+        </div>
+        <div class="form-actions-row">
+          <button type="submit" class="btn btn-primary">Увійти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

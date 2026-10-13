@@ -1,0 +1,10 @@
+{% if admin %}
+<a class="cb-user-chip" href="/admin/profile?token={{ token }}" title="Кабінет">
+  {% if avatar_url %}
+  <img class="cb-user-avatar" src="{{ avatar_url }}" alt="" />
+  {% else %}
+  <span class="cb-user-avatar-fallback">{{ (admin.full_name or admin.email or 'A')[0]|upper }}</span>
+  {% endif %}
+  <span class="cb-user-name">{{ admin.full_name or admin.email }}</span>
+</a>
+{% endif %}

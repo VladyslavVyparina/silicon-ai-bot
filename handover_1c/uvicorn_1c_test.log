@@ -1,0 +1,164 @@
+INFO:     Started server process [86646]
+INFO:     Waiting for application startup.
+2026-08-13 15:57:26,822 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:26,827 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("clients")
+2026-08-13 15:57:26,827 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,829 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("orders")
+2026-08-13 15:57:26,830 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,831 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("delivery_info")
+2026-08-13 15:57:26,832 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,833 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("conversation_states")
+2026-08-13 15:57:26,833 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,835 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("chat_messages")
+2026-08-13 15:57:26,835 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,837 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("manager_tickets")
+2026-08-13 15:57:26,837 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,844 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("payments")
+2026-08-13 15:57:26,844 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,846 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("catalog")
+2026-08-13 15:57:26,846 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,847 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("templates")
+2026-08-13 15:57:26,848 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,849 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("webhooks_log")
+2026-08-13 15:57:26,849 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,850 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("admin_users")
+2026-08-13 15:57:26,851 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,852 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("app_settings")
+2026-08-13 15:57:26,852 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-08-13 15:57:26,856 INFO sqlalchemy.engine.Engine PRAGMA table_info(delivery_info)
+2026-08-13 15:57:26,862 INFO sqlalchemy.engine.Engine [generated in 0.00623s] ()
+2026-08-13 15:57:26,864 INFO sqlalchemy.engine.Engine PRAGMA table_info(conversation_states)
+2026-08-13 15:57:26,864 INFO sqlalchemy.engine.Engine [generated in 0.00024s] ()
+2026-08-13 15:57:26,865 INFO sqlalchemy.engine.Engine PRAGMA table_info(clients)
+2026-08-13 15:57:26,865 INFO sqlalchemy.engine.Engine [generated in 0.00022s] ()
+2026-08-13 15:57:26,867 INFO sqlalchemy.engine.Engine PRAGMA table_info(clients)
+2026-08-13 15:57:26,867 INFO sqlalchemy.engine.Engine [cached since 0.002175s ago] ()
+2026-08-13 15:57:26,870 INFO sqlalchemy.engine.Engine UPDATE clients SET tg_first_name = first_name WHERE (tg_first_name IS NULL OR tg_first_name = '') AND first_name IS NOT NULL AND first_name != ''
+2026-08-13 15:57:26,870 INFO sqlalchemy.engine.Engine [generated in 0.00030s] ()
+2026-08-13 15:57:26,871 INFO sqlalchemy.engine.Engine UPDATE clients SET tg_last_name = last_name WHERE (tg_last_name IS NULL OR tg_last_name = '') AND last_name IS NOT NULL AND last_name != ''
+2026-08-13 15:57:26,872 INFO sqlalchemy.engine.Engine [generated in 0.00030s] ()
+2026-08-13 15:57:26,878 INFO sqlalchemy.engine.Engine PRAGMA table_info(payments)
+2026-08-13 15:57:26,878 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ()
+2026-08-13 15:57:26,881 INFO sqlalchemy.engine.Engine PRAGMA table_info(manager_tickets)
+2026-08-13 15:57:26,881 INFO sqlalchemy.engine.Engine [generated in 0.00045s] ()
+2026-08-13 15:57:26,884 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:26,896 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:27,013 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,013 INFO sqlalchemy.engine.Engine [generated in 0.00031s] ('Силіконові браслети',)
+2026-08-13 15:57:27,029 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,029 INFO sqlalchemy.engine.Engine [generated in 0.00047s] ('Силіконові браслети', 'Браслети', 'Брендовані силіконові браслети з нанесенням логотипу. Розміри 5, 12, 20 мм.', 'https://silicon.com.ua/silikonovi-braslety/', 'Від 8.50 грн/шт при тираже 1000+')
+2026-08-13 15:57:27,031 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,032 INFO sqlalchemy.engine.Engine [cached since 0.01871s ago] ('Світловідбиваючі браслети',)
+2026-08-13 15:57:27,035 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,035 INFO sqlalchemy.engine.Engine [cached since 0.006331s ago] ('Світловідбиваючі браслети', 'Браслети', 'Slap-браслети зі світловідбиваючої плівки, 300x30 мм та 400x30 мм.', 'https://silicon.com.ua/svitlovidbivayuchi-braslety/', 'Від 32 грн/шт при тираже 3000+')
+2026-08-13 15:57:27,037 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,037 INFO sqlalchemy.engine.Engine [cached since 0.02386s ago] ('Контрольні браслети Tyvek',)
+2026-08-13 15:57:27,048 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,048 INFO sqlalchemy.engine.Engine [cached since 0.01987s ago] ('Контрольні браслети Tyvek', 'Браслети', 'Одноразові контрольні браслети для заходів з нанесенням логотипу.', 'https://silicon.com.ua/kontrolni-braslety-tyvek/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,062 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,062 INFO sqlalchemy.engine.Engine [cached since 0.04882s ago] ('Тканинні браслети',)
+2026-08-13 15:57:27,065 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,065 INFO sqlalchemy.engine.Engine [cached since 0.03649s ago] ('Тканинні браслети', 'Браслети', 'Браслети з тканинної стрічки для фестивалів, концертів, конференцій.', 'https://silicon.com.ua/tkaninni-braslety/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,067 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,067 INFO sqlalchemy.engine.Engine [cached since 0.05448s ago] ('Силіконові слеп-браслети',)
+2026-08-13 15:57:27,078 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,079 INFO sqlalchemy.engine.Engine [cached since 0.05036s ago] ('Силіконові слеп-браслети', 'Браслети', 'Slap-браслети з силікону з можливістю брендування.', 'https://silicon.com.ua/silikonovi-slep-braslety/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,081 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,082 INFO sqlalchemy.engine.Engine [cached since 0.06917s ago] ('Еко-чашки з бамбука',)
+2026-08-13 15:57:27,089 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,089 INFO sqlalchemy.engine.Engine [cached since 0.06084s ago] ('Еко-чашки з бамбука', 'Посуд', 'Багаторазові чашки 350 мл та 450 мл з нанесенням логотипу.', 'https://silicon.com.ua/eko-chashky/', 'Від 1 шт з брендуванням')
+2026-08-13 15:57:27,097 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,097 INFO sqlalchemy.engine.Engine [cached since 0.08438s ago] ('Шнурки для бейджів',)
+2026-08-13 15:57:27,100 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,100 INFO sqlalchemy.engine.Engine [cached since 0.07161s ago] ('Шнурки для бейджів', 'Аксесуари', 'Стрічки 15-30 мм з друком логотипу, різні карабіни та фастекси.', 'https://silicon.com.ua/shnurky-dlya-beydzha/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,110 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,110 INFO sqlalchemy.engine.Engine [cached since 0.09707s ago] ('Брелоки',)
+2026-08-13 15:57:27,112 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,112 INFO sqlalchemy.engine.Engine [cached since 0.08367s ago] ('Брелоки', 'Аксесуари', 'Брендовані брелоки зі стрічкою 20 або 25 мм.', 'https://silicon.com.ua/breloky/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,115 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,115 INFO sqlalchemy.engine.Engine [cached since 0.1022s ago] ('RFID-браслети',)
+2026-08-13 15:57:27,118 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,118 INFO sqlalchemy.engine.Engine [cached since 0.08985s ago] ('RFID-браслети', 'Браслети', 'Браслети з RFID-чипом для контролю доступу.', 'https://silicon.com.ua/rfid-braslety/', 'Індивідуальний прорахунок')
+2026-08-13 15:57:27,120 INFO sqlalchemy.engine.Engine SELECT catalog.id, catalog.name, catalog.category, catalog.description, catalog.url, catalog.price_info, catalog.updated_at 
+FROM catalog 
+WHERE catalog.name = ?
+2026-08-13 15:57:27,120 INFO sqlalchemy.engine.Engine [cached since 0.1072s ago] ('Нанесення логотипу',)
+2026-08-13 15:57:27,127 INFO sqlalchemy.engine.Engine INSERT INTO catalog (name, category, description, url, price_info) VALUES (?, ?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:27,127 INFO sqlalchemy.engine.Engine [cached since 0.09889s ago] ('Нанесення логотипу', 'Послуги', 'Нанесення логотипу на продукцію замовника.', 'https://silicon.com.ua/', 'За запитом')
+2026-08-13 15:57:27,129 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:27,131 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:27,132 INFO sqlalchemy.engine.Engine SELECT templates.id, templates.keywords, templates.response_text, templates.is_active 
+FROM templates
+ LIMIT ? OFFSET ?
+2026-08-13 15:57:27,133 INFO sqlalchemy.engine.Engine [generated in 0.00024s] (1, 0)
+2026-08-13 15:57:27,137 INFO sqlalchemy.engine.Engine INSERT INTO templates (keywords, response_text, is_active) VALUES (?, ?, ?) RETURNING id
+2026-08-13 15:57:27,137 INFO sqlalchemy.engine.Engine [generated in 0.00022s (insertmanyvalues) 1/3 (ordered; batch not supported)] ('доставка,нова пошта,відправка,доставити', 'Відправлення здійснюється по всій Україні. Можливий самовивіз. Доставка транспортними компаніями (Нова пошта).', 1)
+2026-08-13 15:57:27,145 INFO sqlalchemy.engine.Engine INSERT INTO templates (keywords, response_text, is_active) VALUES (?, ?, ?) RETURNING id
+2026-08-13 15:57:27,145 INFO sqlalchemy.engine.Engine [insertmanyvalues 2/3 (ordered; batch not supported)] ('оплата,liqpay,лікпей,карткою', 'Оплата онлайн карткою через LiqPay. Рахунків на реквізити немає.', 1)
+2026-08-13 15:57:27,146 INFO sqlalchemy.engine.Engine INSERT INTO templates (keywords, response_text, is_active) VALUES (?, ?, ?) RETURNING id
+2026-08-13 15:57:27,146 INFO sqlalchemy.engine.Engine [insertmanyvalues 3/3 (ordered; batch not supported)] ('графік,робота,вихідні,час роботи', 'Зверніться до менеджера Дмитра Афоніна для уточнення графіку роботи та термінів.', 1)
+2026-08-13 15:57:27,149 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:27,151 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:27,154 INFO sqlalchemy.engine.Engine SELECT admin_users.id, admin_users.email, admin_users.login, admin_users.password_hash, admin_users.role, admin_users.full_name, admin_users.avatar_path, admin_users.is_active, admin_users.created_at, admin_users.updated_at 
+FROM admin_users
+ LIMIT ? OFFSET ?
+2026-08-13 15:57:27,154 INFO sqlalchemy.engine.Engine [generated in 0.00061s] (1, 0)
+2026-08-13 15:57:27,163 INFO sqlalchemy.engine.Engine SELECT admin_users.id, admin_users.email, admin_users.login, admin_users.password_hash, admin_users.role, admin_users.full_name, admin_users.avatar_path, admin_users.is_active, admin_users.created_at, admin_users.updated_at 
+FROM admin_users 
+WHERE admin_users.role = ?
+ LIMIT ? OFFSET ?
+2026-08-13 15:57:27,163 INFO sqlalchemy.engine.Engine [generated in 0.00031s] ('owner', 1, 0)
+2026-08-13 15:57:27,166 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:65232 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65233 - "GET /test-bot HTTP/1.1" 200 OK
+2026-08-13 15:57:58,150 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:58,152 INFO sqlalchemy.engine.Engine INSERT INTO chat_messages (chat_id, sender, content, content_type) VALUES (?, ?, ?, ?) RETURNING id, created_at
+2026-08-13 15:57:58,152 INFO sqlalchemy.engine.Engine [generated in 0.00028s] ('1c-demo', 'user', 'прайс', 'text')
+2026-08-13 15:57:58,154 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:58,161 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:58,163 INFO sqlalchemy.engine.Engine SELECT chat_messages.id, chat_messages.chat_id, chat_messages.sender, chat_messages.content, chat_messages.content_type, chat_messages.created_at 
+FROM chat_messages 
+WHERE chat_messages.id = ?
+2026-08-13 15:57:58,163 INFO sqlalchemy.engine.Engine [generated in 0.00041s] (103,)
+2026-08-13 15:57:58,167 INFO sqlalchemy.engine.Engine SELECT conversation_states.id, conversation_states.chat_id, conversation_states.step, conversation_states.data_json, conversation_states.human_mode, conversation_states.updated_at 
+FROM conversation_states 
+WHERE conversation_states.chat_id = ?
+2026-08-13 15:57:58,167 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ('1c-demo',)
+2026-08-13 15:57:58,170 INFO sqlalchemy.engine.Engine INSERT INTO conversation_states (chat_id, step, data_json, human_mode) VALUES (?, ?, ?, ?) RETURNING id, updated_at
+2026-08-13 15:57:58,171 INFO sqlalchemy.engine.Engine [generated in 0.00027s] ('1c-demo', 'idle', '{}', 0)
+2026-08-13 15:57:58,176 INFO sqlalchemy.engine.Engine SELECT conversation_states.id, conversation_states.chat_id, conversation_states.step, conversation_states.data_json, conversation_states.human_mode, conversation_states.updated_at 
+FROM conversation_states 
+WHERE conversation_states.chat_id = ?
+2026-08-13 15:57:58,176 INFO sqlalchemy.engine.Engine [cached since 0.009256s ago] ('1c-demo',)
+2026-08-13 15:57:58,179 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:58,183 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:58,184 INFO sqlalchemy.engine.Engine INSERT INTO chat_messages (chat_id, sender, content, content_type) VALUES (?, ?, ?, ?) RETURNING id, created_at
+2026-08-13 15:57:58,184 INFO sqlalchemy.engine.Engine [cached since 0.03207s ago] ('1c-demo', 'bot', 'Основний асортимент Silicon:\n• силіконові браслети з друком лого (5 / 12 / 20 мм)\n• світловідбиваючі браслети (300×30, 400×30)\n• RFID, slap, Tyvek ... (334 characters truncated) ... сі є доплати «Додатково» (зміна кольору/розміру в тиражі +200 грн, нумерація +15 грн/номер тощо).\n\nЩо саме цікавить і який тираж — порахую точніше?', 'text')
+2026-08-13 15:57:58,187 INFO sqlalchemy.engine.Engine COMMIT
+2026-08-13 15:57:58,193 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-08-13 15:57:58,193 INFO sqlalchemy.engine.Engine SELECT chat_messages.id, chat_messages.chat_id, chat_messages.sender, chat_messages.content, chat_messages.content_type, chat_messages.created_at 
+FROM chat_messages 
+WHERE chat_messages.id = ?
+2026-08-13 15:57:58,194 INFO sqlalchemy.engine.Engine [cached since 0.03072s ago] (104,)
+INFO:     127.0.0.1:65241 - "POST /api/chat/message HTTP/1.1" 200 OK
+2026-08-13 15:57:58,195 INFO sqlalchemy.engine.Engine ROLLBACK

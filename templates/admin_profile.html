@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кабінет — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+  <style>
+    .avatar-preview {
+      width: 88px; height: 88px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+    .avatar-placeholder {
+      width: 88px; height: 88px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-primary-glow); color: var(--color-primary);
+      font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
+      border: 2px solid var(--color-primary-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item active" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Робочий кабінет</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if msg %}<div class="ok" id="profile-flash-ok">{{ msg }}</div>{% endif %}
+          {% if err %}<div class="err" id="profile-flash-err">{{ err }}</div>{% endif %}
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Профіль</div></div>
+            <div style="display:flex;gap:16px;align-items:center;margin-bottom:16px;">
+              {% if avatar_url %}
+              <img class="avatar-preview" src="{{ avatar_url }}" alt="avatar" />
+              {% else %}
+              <div class="avatar-placeholder">{{ (admin.full_name or admin.email or 'A')[0]|upper }}</div>
+              {% endif %}
+              <div>
+                <div><strong>{{ admin.full_name or admin.email }}</strong></div>
+                <div class="hint">{{ admin.email }} · {{ 'Власник' if admin.role == 'owner' else 'Менеджер' }}</div>
+              </div>
+            </div>
+
+            <form method="post" action="/admin/profile/avatar" enctype="multipart/form-data" style="margin-bottom:18px;">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <div class="form-row">
+                <label>Фото профілю</label>
+                <input type="file" name="avatar" accept="image/*" required />
+              </div>
+              <button type="submit" class="btn btn-small">Оновити фото</button>
+            </form>
+
+            <form method="post" action="/admin/profile/update">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <div class="form-row">
+                <label>Email / логін</label>
+                <input type="email" value="{{ admin.email }}" disabled />
+                <p class="hint">Логін для входу — це email, на який надіслано доступ. Змінити не можна.</p>
+              </div>
+              <div class="form-row">
+                <label>Ім'я</label>
+                <input type="text" name="full_name" value="{{ admin.full_name or '' }}" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Зберегти ім'я</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header"><div class="cb-card-title">Зміна пароля</div></div>
+            <form method="post" action="/admin/profile/password">
+              <input type="hidden" name="token" value="{{ token }}" />
+              <div class="form-grid">
+                <div class="form-row">
+                  <label>Поточний пароль</label>
+                  <input type="password" name="current_password" required />
+                </div>
+                <div class="form-row">
+                  <label>Новий пароль</label>
+                  <input type="password" name="new_password" required minlength="6" />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-green">Змінити пароль</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    if (window.lucide) lucide.createIcons();
+    (function() {
+      var ok = document.getElementById('profile-flash-ok');
+      var err = document.getElementById('profile-flash-err');
+      if (ok && window.showToast) showToast(ok.textContent.trim());
+      if (err && window.showToast) showToast(err.textContent.trim(), 'error');
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дашборд — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item active" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком{% if stats and stats.invoice_notices %} ({{ stats.invoice_notices }}){% endif %}</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки менеджеру{% if stats.unread_tickets %} ({{ stats.unread_tickets }}){% endif %}</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin and admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Дашборд</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="cb-stat-label">Користувачі в боті</div>
+              <div class="cb-stat-value">{{ stats.bot_users }}</div>
+              <div class="cb-stat-sub">Унікальні чати / клієнти</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Клієнти CRM</div>
+              <div class="cb-stat-value" style="color:var(--color-info)">{{ stats.clients }}</div>
+              <div class="cb-stat-sub">Зареєстровані в системі</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Повідомлення</div>
+              <div class="cb-stat-value">{{ stats.messages }}</div>
+              <div class="cb-stat-sub">Уся історія діалогів</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Замовлення</div>
+              <div class="cb-stat-value" style="color:var(--color-success)">{{ stats.orders }}</div>
+              <div class="cb-stat-sub">Створені через бота</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Заявки менеджеру</div>
+              <div class="cb-stat-value" style="color:var(--color-accent)">{{ stats.open_tickets }}</div>
+              <div class="cb-stat-sub">Відкриті · непрочитані: {{ stats.unread_tickets }}</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Оплати за рахунком</div>
+              <div class="cb-stat-value" style="color:var(--color-warning)">{{ stats.invoice_notices }}</div>
+              <div class="cb-stat-sub">Чекають відповіді в чаті</div>
+            </div>
+            <div class="stat-card">
+              <div class="cb-stat-label">Режим менеджера</div>
+              <div class="cb-stat-value" style="color:var(--color-warning)">{{ stats.human_mode_chats }}</div>
+              <div class="cb-stat-sub">Чати без AI (людина)</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="zap"></i> Швидкі дії</div>
+            </div>
+            <div class="nav-pills">
+              <a href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+              <a href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком</a>
+              <a href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки</a>
+              <a href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+              {% if admin and admin.role == 'owner' %}
+              <a href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+              <a href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+              {% endif %}
+              <a href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="trophy"></i> Менеджери · закриті заявки</div>
+            </div>
+            {% if stats.manager_stats %}
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Менеджер</th><th>Закрито</th><th>Активні</th></tr></thead>
+                <tbody>
+                {% for m in stats.manager_stats %}
+                  <tr>
+                    <td>{{ m.name }}{% if m.role == 'owner' %} <span class="hint">(адмін)</span>{% endif %}</td>
+                    <td><strong>{{ m.closed }}</strong></td>
+                    <td>{{ m.active }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <p class="hint">Поки немає статистики.</p>
+            {% endif %}
+          </div>
+
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="bell-ring"></i> Нові запити до менеджера</div>
+            </div>
+            {% if tickets %}
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Chat</th>
+                    <th>Питання</th>
+                    <th>Статус</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for t in tickets %}
+                  <tr>
+                    <td>{{ t.id }}</td>
+                    <td><code>{{ t.chat_id }}</code></td>
+                    <td>{{ t.question[:120] }}{% if t.question|length > 120 %}…{% endif %}</td>
+                    <td>{% if not t.is_read %}<span style="color:var(--color-accent)">нове</span>{% else %}{{ t.status }}{% endif %}</td>
+                    <td>
+                      <form method="post" action="/admin/tickets/{{ t.id }}/read">
+                        <input type="hidden" name="token" value="{{ token }}" />
+                        <button type="submit" class="btn btn-small btn-green">Відкрити чат</button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <p class="hint">Немає відкритих заявок. Коли клієнт попросить менеджера — з’явиться тут.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

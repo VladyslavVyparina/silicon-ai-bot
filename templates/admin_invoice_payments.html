@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оплати за рахунком — Silicon Admin</title>
+  {% include "_admin_design_system.html" %}
+  <style>
+    .pay-row { padding: 12px; border-top: 1px solid var(--border-color); display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:start; }
+    .pay-row.new { background: hsla(38, 92%, 50%, 0.08); border-left: 3px solid var(--color-warning); }
+    .pay-row.done { opacity: 0.72; }
+    .pay-shot { max-width: 220px; max-height: 160px; border-radius: 8px; border: 1px solid var(--border-color); margin-top: 8px; }
+    .pay-actions { display:flex; flex-direction:column; gap:6px; min-width:160px; }
+  </style>
+</head>
+<body>
+  <div class="cb-app">
+    <aside class="cb-sidebar">
+      <div class="cb-sidebar-brand">
+        <div class="cb-brand-icon">S</div>
+        <div class="cb-brand-text">
+          <div class="cb-brand-title">Silicon</div>
+          <div class="cb-brand-sub">AI · Олег</div>
+        </div>
+      </div>
+      <nav class="cb-sidebar-nav">
+        <div class="cb-nav-section">Панель</div>
+        <a class="cb-nav-item" href="/admin?token={{ token }}"><i data-lucide="layout-dashboard"></i> Дашборд</a>
+        <a class="cb-nav-item" href="/admin/live-chats?token={{ token }}"><i data-lucide="messages-square"></i> Живі чати</a>
+        <a class="cb-nav-item active" href="/admin/invoice-payments?token={{ token }}"><i data-lucide="banknote"></i> Оплати за рахунком{% if stats.invoice_notices %} ({{ stats.invoice_notices }}){% endif %}</a>
+        <a class="cb-nav-item" href="/admin/tickets?token={{ token }}"><i data-lucide="bell"></i> Заявки{% if stats.unread_tickets %} ({{ stats.unread_tickets }}){% endif %}</a>
+        <a class="cb-nav-item" href="/admin/clients?token={{ token }}"><i data-lucide="contact"></i> База клієнтів</a>
+        {% if admin and admin.role == 'owner' %}
+        <a class="cb-nav-item" href="/admin/team?token={{ token }}"><i data-lucide="users"></i> Команда</a>
+        <a class="cb-nav-item" href="/admin/ai-settings?token={{ token }}"><i data-lucide="sparkles"></i> AI / Промпт</a>
+        {% endif %}
+        <a class="cb-nav-item" href="/admin/profile?token={{ token }}"><i data-lucide="user-cog"></i> Кабінет</a>
+      </nav>
+    </aside>
+    <div class="cb-main">
+      <div class="cb-topbar">
+        <div class="cb-topbar-title">Оплати за рахунком / реквізитами</div>
+        <div class="cb-topbar-actions">
+          {% include "_admin_user_chip.html" %}
+          <button type="button" class="cb-theme-toggle" id="cb-theme-toggle" title="Змінити тему">
+            <svg class="cb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="cb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cb-content">
+        <div class="cb-wrap">
+          {% if flash_msg %}<p class="hint" style="color:var(--color-success)">{{ flash_msg }}</p>{% endif %}
+          {% if flash_err %}<p class="hint" style="color:var(--color-danger)">{{ flash_err }}</p>{% endif %}
+
+          <div class="card">
+            <div class="cb-card-header">
+              <div class="cb-card-title"><i data-lucide="banknote"></i> Нові: {{ stats.invoice_notices }}</div>
+            </div>
+            <p class="hint" style="padding:0 12px 8px">Клієнт оплатив PDF-рахунок і написав / надіслав скрін. Відкрийте живий чат і відповісти в особисті.</p>
+            {% if notices %}
+              {% for n in notices %}
+              <div class="pay-row {{ n.status }}">
+                <div>
+                  <div><strong>{{ n.tg_name or n.chat_id }}</strong>{% if n.phone %} · {{ n.phone }}{% endif %}</div>
+                  <div class="hint">Рахунок {{ n.invoice_number or '—' }}{% if n.company_name %} · {{ n.company_name }}{% endif %}{% if n.amount %} · {{ n.amount }} грн{% endif %}</div>
+                  {% if n.message %}<div style="margin-top:6px">{{ n.message }}</div>{% endif %}
+                  {% if n.screenshot_path %}
+                    {% if n.screenshot_path.lower().endswith('.pdf') %}
+                    <div style="margin-top:8px"><a href="{{ n.screenshot_path }}" target="_blank">Файл квитанції</a></div>
+                    {% else %}
+                    <a href="{{ n.screenshot_path }}" target="_blank"><img class="pay-shot" src="{{ n.screenshot_path }}" alt="скрін оплати"></a>
+                    {% endif %}
+                  {% endif %}
+                  <div class="hint" style="margin-top:6px">{{ n.created_at|kyiv }} · chat {{ n.chat_id }}</div>
+                </div>
+                <div class="pay-actions">
+                  <a class="btn btn-small btn-green" href="/admin/live-chats?token={{ token }}&chat_id={{ n.chat_id }}">Написати в чат</a>
+                  {% if n.status == 'new' %}
+                  <form method="post" action="/admin/invoice-payments/{{ n.id }}/done">
+                    <input type="hidden" name="token" value="{{ token }}" />
+                    <button type="submit" class="btn btn-small btn-ghost">Оброблено</button>
+                  </form>
+                  {% else %}
+                  <span class="hint">оброблено</span>
+                  {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+            <p class="hint" style="padding:12px">Поки немає повідомлень про оплату за рахунком.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

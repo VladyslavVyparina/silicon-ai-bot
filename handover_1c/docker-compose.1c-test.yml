@@ -1,0 +1,20 @@
+# Тестовий стенд для програміста 1С (веб API + web-чат бота)
+# Запуск: docker compose -f docker-compose.1c-test.yml up -d --build
+services:
+  silicon-1c-test:
+    build: .
+    container_name: silicon-1c-test
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env.1c-test
+    volumes:
+      - ./handover_1c/silicon_bot_1c_test.db:/app/data/silicon_bot.db
+      - ./data/knowledge:/app/data/knowledge:ro
+      - ./data/branding:/app/data/branding:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5

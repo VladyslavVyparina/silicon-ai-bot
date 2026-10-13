@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Silicon — тестовий бот (1С стенд)</title>
+  <style>
+    :root {
+      --bg: #e8eef2;
+      --panel: #f7fafc;
+      --ink: #1a2332;
+      --accent: #0b6e4f;
+      --bot: #dfe8ef;
+      --user: #c5e4d4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(160deg, #d9e4ec 0%, #eef3f6 45%, #dde8df 100%);
+      color: var(--ink); min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 40px; }
+    h1 { font-size: 1.35rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+    .sub { color: #4a5a6a; margin: 0 0 16px; font-size: 0.95rem; }
+    .meta {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .meta input {
+      flex: 1; min-width: 180px; padding: 8px 10px; border: 1px solid #b7c4ce;
+      border-radius: 8px; background: #fff;
+    }
+    #log {
+      background: var(--panel); border: 1px solid #c5d0d8; border-radius: 12px;
+      min-height: 420px; max-height: 60vh; overflow: auto; padding: 14px;
+    }
+    .msg { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; max-width: 92%; white-space: pre-wrap; }
+    .msg.bot { background: var(--bot); }
+    .msg.user { background: var(--user); margin-left: auto; }
+    .msg .who { font-size: 0.75rem; opacity: 0.7; margin-bottom: 4px; }
+    form { display: flex; gap: 8px; margin-top: 12px; }
+    form textarea {
+      flex: 1; min-height: 54px; resize: vertical; padding: 10px;
+      border-radius: 10px; border: 1px solid #b7c4ce;
+    }
+    button {
+      background: var(--accent); color: #fff; border: 0; border-radius: 10px;
+      padding: 0 18px; font-weight: 600; cursor: pointer;
+    }
+    button:disabled { opacity: 0.5; cursor: wait; }
+    .hints { margin-top: 14px; font-size: 0.9rem; color: #3d4d5c; }
+    .hints code { background: #fff; padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Silicon — тестовий бот</h1>
+    <p class="sub">Стенд для інтеграції з 1С. Працює через API без Telegram.</p>
+    <div class="meta">
+      <input id="chatId" value="1c-test-chat-web" />
+    </div>
+    <div id="log"></div>
+    <form id="f">
+      <textarea id="text" placeholder="Напишіть повідомлення… наприклад: прайс" required></textarea>
+      <button type="submit" id="send">Надіслати</button>
+    </form>
+    <div class="hints">
+      Швидкі перевірки 1С:
+      <code>рахунок на реквізити</code>,
+      <code>ЄДРПОУ 12345678</code>,
+      <code>силіконові браслети 100 шт</code>.
+      API docs: <a href="/docs">/docs</a>, адмінка: <a href="/admin">/admin</a>
+    </div>
+  </div>
+  <script>
+    const log = document.getElementById("log");
+    const form = document.getElementById("f");
+    const textEl = document.getElementById("text");
+    const chatEl = document.getElementById("chatId");
+    const sendBtn = document.getElementById("send");
+
+    function add(who, text) {
+      const d = document.createElement("div");
+      d.className = "msg " + who;
+      d.innerHTML = `<div class="who">${who === "user" ? "Ви" : "Олег (бот)"}</div>`;
+      d.appendChild(document.createTextNode(text));
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    add("bot", "Вітаю! Я Олег (тестовий стенд). Можемо перевірити прайс, замовлення та рахунок у 1С.");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const message = textEl.value.trim();
+      if (!message) return;
+      const chat_id = chatEl.value.trim() || "1c-test-chat-web";
+      add("user", message);
+      textEl.value = "";
+      sendBtn.disabled = true;
+      try {
+        const r = await fetch("/api/chat/message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id, message }),
+        });
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.detail || r.statusText);
+        add("bot", (data.response || "") + (data.action ? `\n\n[action: ${data.action}]` : ""));
+      } catch (err) {
+        add("bot", "Помилка: " + err.message);
+      } finally {
+        sendBtn.disabled = false;
+        textEl.focus();
+      }
+    });
+  </script>
+</body>
+</html>
